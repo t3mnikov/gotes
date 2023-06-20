@@ -1,2 +1,2 @@
 # gotes
-Gotes - it's a like notes on Go
+Gotes - it's like a notes on Go
