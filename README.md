@@ -4,7 +4,7 @@
   <br>
 </p>
 
-# gotes*
+# gotes
 disclaimer: pet project
 
 gotes - it's like a notes on Go
