@@ -11,11 +11,27 @@ gotes - it's like a notes on Go
 
 For begin you can create `.env.local`  to set your configure at `configs/.`
 
-In order to up migration run command:
-
-
-
+In order to `up` migration run command:
 ```
-create migration
-go run cmd/migration/main.go -c up"
+go run cmd/migration/main.go -c "up"
+```
+
+For `down`:
+```
+go run cmd/migration/main.go -c "down"
+```
+
+For `create` migration with `any_name` run:
+```
+go run cmd/migration/main.go -c "create" -args "any_namne sql"
+```
+
+Run tests:
+```
+make test
+```
+
+Run build:
+```
+make
 ```
