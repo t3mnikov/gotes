@@ -9,6 +9,11 @@ disclaimer: pet project
 
 gotes - it's like a notes on Go
 
+For begin you can create `.env.local`  to set your configure at `configs/.`
+
+In order to up migration run command:
+
+
 
 ```
 create migration
