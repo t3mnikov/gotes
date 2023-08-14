@@ -15,7 +15,6 @@ type server struct {
     store  store.Store
     echo   *echo.Echo
     config *Config
-    // session, jwt ???
 }
 
 // Start server

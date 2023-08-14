@@ -8,13 +8,13 @@ import (
 // User memory repository
 type UserRepository struct {
     store *Store
-    users map[int]*model.User
+    users map[string]*model.User
 }
 
 // Check User already exists
 func (r UserRepository) EmailExists(email string) (bool, error) {
-    for _, u := range r.users {
-        if u.Email == email {
+    for e := range r.users {
+        if e == email {
             return true, store.ErrEmailAlreadyExists
         }
     }
@@ -34,26 +34,32 @@ func (r UserRepository) Create(u *model.User) error {
         return err
     }
 
+    _, err = r.EmailExists(u.Email)
+    if err != nil {
+        return err
+    }
+
     u.ID = len(r.users) + 1
-    r.users[u.ID] = u
+    r.users[u.Email] = u
 
     return nil
 }
 
 // FindByID Find User by ID
 func (r UserRepository) FindByID(id int) (*model.User, error) {
-    u, ok := r.users[id]
-    if !ok {
-        return nil, store.ErrRecordNotFound
+    for _, u := range r.users {
+        if u.ID == id {
+            return u, nil
+        }
     }
 
-    return u, nil
+    return nil, store.ErrRecordNotFound
 }
 
 // FindByEmail Find User by Email
 func (r UserRepository) FindByEmail(email string) (*model.User, error) {
-    for _, u := range r.users {
-        if u.Email == email {
+    for e, u := range r.users {
+        if e == email {
             return u, nil
         }
     }

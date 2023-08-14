@@ -13,14 +13,17 @@ func TestUserRepository_Create(t *testing.T) {
 
     s := sqlstore.New(db)
     u := model.TestUser(t)
-
-    //TODO make test with already existing user
+    u2 := model.TestUser(t)
 
     err := s.User().Create(u)
 
     assert.True(t, u.ID > 0)
     assert.NoError(t, err)
     assert.NotNil(t, u)
+
+    err = s.User().Create(u2)
+    assert.Error(t, err)
+    assert.Equal(t, u2.ID, 0)
 }
 
 func TestUserRepository_FindByID(t *testing.T) {

@@ -9,3 +9,11 @@ func TestUser(t *testing.T) *User {
         Password: "123123",
     }
 }
+
+// Testing Gote
+func TestGote(t *testing.T) *Gote {
+    return &Gote{
+        Name: "Test name",
+        Text: "Test text",
+    }
+}
